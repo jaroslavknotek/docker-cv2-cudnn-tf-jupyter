@@ -5,5 +5,5 @@ docker run \
 	--mount type=bind,source=/home/jry/source/,target=/jupyterlab/source \
 	--gpus all \
 	-p 4444:4444 \
-	-it tf-opencv:latest 
+	-it tf-opencv:latest
 	

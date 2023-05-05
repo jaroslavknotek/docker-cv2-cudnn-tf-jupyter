@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04
+FROM tensorflow/tensorflow:latest-gpu-jupyter
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG TZ=Etc/UTC
@@ -27,13 +27,10 @@ RUN wget https://bootstrap.pypa.io/get-pip.py && \
     python3.10 get-pip.py && \
     rm get-pip.py
 
-# Install TensorFlow with GPU support
-RUN python3.10 -m pip install tensorflow
 
 RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
 # Install OpenCV
-RUN python3.10 -m pip install opencv-python jupyterlab
-
+RUN python3.10 -m pip install opencv-python tensorflow jupyterlab
 
 WORKDIR /jupyterlab
 CMD jupyter lab --port 4444 --allow-root --ip=0.0.0.0
